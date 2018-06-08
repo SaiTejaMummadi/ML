@@ -1,11 +1,10 @@
 # -*- coding: utf-8 -*-
 """
-Created on Fri Jun  8 02:14:52 2018
+Created on Sat Jun  9 01:46:11 2018
 
 @author: Sai Teja Mummadi
 """
-
-#Naive Bayes
+#Decision Tree
 
 #Libraries
 import pandas as pd
@@ -29,9 +28,9 @@ sc= StandardScaler()
 X_train = sc.fit_transform(X_train)
 X_test = sc.transform(X_test)
 
-#Fitting the Naive Bayes
-from sklearn.naive_bayes import GaussianNB
-classifier = GaussianNB()
+#Fitting the Decision Tree
+from sklearn.tree import DecisionTreeClassifier
+classifier = DecisionTreeClassifier(criterion="entropy", random_state = 0)
 classifier.fit(X_train,y_train)
 
 
@@ -56,7 +55,7 @@ plt.ylim(X2.min(), X2.max())
 for i, j in enumerate(np.unique(y_set)):
     plt.scatter(X_set[y_set == j, 0], X_set[y_set == j, 1],
                 c = ListedColormap(('red', 'green'))(i), label = j)
-plt.title('Naive Bayes (Training set)')
+plt.title('Decision Tree(Training set)')
 plt.xlabel('Age')
 plt.ylabel('Estimated Salary')
 plt.legend()
@@ -74,7 +73,7 @@ plt.ylim(X2.min(), X2.max())
 for i, j in enumerate(np.unique(y_set)):
     plt.scatter(X_set[y_set == j, 0], X_set[y_set == j, 1],
                 c = ListedColormap(('red', 'green'))(i), label = j)
-plt.title('Naive Bayes (Test set)')
+plt.title('Decision Tree(Test set)')
 plt.xlabel('Age')
 plt.ylabel('Estimated Salary')
 plt.legend()
